@@ -1,0 +1,55 @@
+Aim: Implement one hot encoding of words or characters. 
+Description: One-hot encoding is the most common, most basic way to turn a token into a 
+vector. You already saw it in action in our initial IMDB and Reuters examples from chapter 3 
+(done with words, in our case). It consists in associating a unique integer index to every 
+word, then turning this integer index i into a binary vector of size N, the size of the 
+vocabulary, that would be all-zeros except for the i-th entry, which would be 1. 
+Of course, one-hot encoding can be done at the character level as well. To unambiguously 
+drive home what one-hot encoding is and how to implement it, here are two toy examples of 
+one-hot encoding: one for words, the other for characters. 
+Program: 
+1..One hot encoding for words: 
+sentence = "i love machine learning” 
+import numpy as np 
+words = sentence.split() 
+vocab = sorted(set(words)) 
+word_to_index = {word: i for i, word in enumerate(vocab)} 
+one_hot_vectors = {} 
+for word in words: 
+vector = np.zeros(len(vocab), dtype=int) 
+vector[word_to_index[word]] = 1 
+one_hot_vectors[word] = vector 
+for word, vec in one_hot_vectors.items(): 
+print(word, ":", vec) 
+ 
+Output: 
+i : [0 1 0 0] 
+love : [0 0 1 0] 
+machine : [1 0 0 0] 
+learning : [0 0 0 1] 
+Roll No:23A91A4449
+Exp No: 
+Date: 
+Page No: 
+ADITYA ENGINEERING COLLEGE(A) 
+ 
+ 
+ 
+ 
+2.one hot encoding for characters: 
+word = “data" 
+import numpy as np 
+chars = sorted(set(word)) 
+char_to_index = {ch: i for i, ch in enumerate(chars)} 
+one_hot_chars = {} 
+for ch in word: 
+vector = np.zeros(len(chars), dtype=int) 
+vector[char_to_index[ch]] = 1 
+one_hot_chars[ch] = vector 
+for ch, vec in one_hot_chars.items(): 
+print(ch, ":", vec) 
+ 
+Output: 
+d : [1 0 0 0] 
+a : [0 1 0 0] 
+t : [0 0 0 1]
